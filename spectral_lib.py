@@ -3,8 +3,6 @@ import networkx as nx
 from sklearn.cluster import k_means
 from scipy.sparse.linalg import eigsh
 
-# adj_mat = np.loadtxt('example.txt')
-
 def get_adj_matrix_A(edges):
     ''' Convert an input graph of edges (undirected) to adjajency matrix
     
@@ -98,18 +96,19 @@ def get_clusters(L, D, n_clusters, normalize_spectral=True):
 
     return labels
 
-# def normalized_spectral_with_normalized_L(agraph):
-#     L, D = get_L_and_D(adj_mat, normalize_L=True)
-#     labels = get_clusters(L, D, 2, normalize_spectral=True)
-#     print(labels)
-#     foo = 8
-
-# normalized_spectral_with_normalized_L(adj_mat)
-
-
-
-
-
+def get_edges_and_param_line_from_file(path):
+    ''' Extract edges and parameter line from file
     
+    Arguments:
+        path {string} -- Path to file 
     
+    Returns:
+        egdes: list of egdes
+        param_line: parameter line which should be on top on the clustering file
+    '''
 
+    with open(path) as f:
+        param_line = f.readline()
+        edges = np.loadtxt(f, dtype=int)
+
+        return edges, param_line
