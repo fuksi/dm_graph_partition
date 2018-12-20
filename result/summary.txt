@@ -1,0 +1,6 @@
+# Dataset Objective_norm_spectral Objective_unnorm_spectral
+ca-AstroPh 129.5 353.0 
+ca-CondMat 1100.0 281.5 
+ca-GrQc 1.2776243093922652 0.22857142857142856 
+ca-HepPh 668.0 143.4 
+ca-HepTh 39.0 22.4 

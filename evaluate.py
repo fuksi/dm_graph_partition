@@ -144,6 +144,22 @@ def compute_cost(G, cluster_id, cluster_count):
     norm_cost = cost/min(cluster_count[0:])
     return norm_cost
 
+def evaluate_with_args(graph_path, clustering_path):
+    # load graph
+    gid, n, m, k, G = parse_graphfile(graph_path)
+
+    (error, errstr, n_o, m_o, k_o,
+     cluster_id, cluster_count) = parse_clustering_file(
+         n, m, k, clustering_path
+     )
+
+    if error:
+        print("Error encountered:", errstr)
+        sys.exit(-1)
+        
+    cost = compute_cost(G, cluster_id, cluster_count)
+    return cost
+
 
 def main():
     try:

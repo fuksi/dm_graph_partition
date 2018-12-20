@@ -1,5 +1,6 @@
 import numpy as np
 from spectral_lib import get_adj_matrix_A, get_L_and_D, get_clusters, get_edges_and_param_line_from_file
+from evaluate import evaluate_with_args
 np.random.seed(1)
 
 # One method to wrap the whole process from source dataset to clustering output
@@ -31,8 +32,26 @@ datasets_k = {
     'ca-CondMat': 100, 
     'ca-GrQc': 2, 
     'ca-HepPh': 25, 
-    'ca-HepTh': 20
+    'ca-HepTh': 20,
+    'Oregon-1': 5,
+    'roadNet-CA': 50,
+    'soc-Epinions1': 10,
+    'web-NotreDame': 20
 }
 
 for dataset_name, k in datasets_k.items():
     get_clusters_all_algorithm(dataset_name, k)
+
+with open('./result/summary.txt', 'a') as f:
+    f.write('# Dataset Objective_norm_spectral Objective_unnorm_spectral\n')
+    for dataset_name in datasets_k.keys():
+        dataset_path = f'./data/{dataset_name}.txt'
+        norm_result_path = f'./result/{dataset_name}.output'
+        unnormal_result_path = f'./result/unnorm_{dataset_name}.output'
+        norm_obj = evaluate_with_args(dataset_path, norm_result_path)
+        unnorm_obj = evaluate_with_args(dataset_path, unnormal_result_path)
+        output = f'{dataset_name} {norm_obj} {unnorm_obj} \n'
+        print(output)
+        f.write(output)
+
+
