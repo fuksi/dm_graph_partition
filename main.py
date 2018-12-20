@@ -3,7 +3,7 @@ from spectral_lib import get_adj_matrix_A, get_L_and_D, get_clusters, get_edges_
 np.random.seed(1)
 
 # One method to wrap the whole process from source dataset to clustering output
-def get_clusters_all_algorithm(dataset_name, n_clusters, algorithm):
+def get_clusters_all_algorithm(dataset_name, n_clusters):
 
     # Load and create adjajency matrix, param_line will be used for output file
     filepath = f'./data/{dataset_name}.txt'
@@ -13,7 +13,7 @@ def get_clusters_all_algorithm(dataset_name, n_clusters, algorithm):
     # Algorithm 2
     L, D = get_L_and_D(A, normalize_L=True)
     labels = get_clusters(L, D, n_clusters, normalize_spectral=False)
-    with open(F'./result/unnorm_{dataset_name}.output', 'w') as f:
+    with open(f'./result/unnorm_{dataset_name}.output', 'w') as f:
         f.write(param_line)
         for i in range(0, len(labels)):
             f.write(f'{vertices_mapping[i]} {labels[i]}\n')
@@ -21,7 +21,7 @@ def get_clusters_all_algorithm(dataset_name, n_clusters, algorithm):
     # Algorithm 3
     L, D = get_L_and_D(A, normalize_L=True)
     labels = get_clusters(L, D, n_clusters, normalize_spectral=True)
-    with open(F'./result/{dataset_name}.output', 'w') as f:
+    with open(f'./result/{dataset_name}.output', 'w') as f:
         f.write(param_line)
         for i in range(0, len(labels)):
             f.write(f'{vertices_mapping[i]} {labels[i]}\n')
@@ -34,5 +34,5 @@ datasets_k = {
     'ca-HepTh': 20
 }
 
-for dataset_name, k in datasets:
+for dataset_name, k in datasets_k.items():
     get_clusters_all_algorithm(dataset_name, k)
