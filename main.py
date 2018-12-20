@@ -28,15 +28,12 @@ def get_clusters_all_algorithm(dataset_name, n_clusters):
             f.write(f'{vertices_mapping[i]} {labels[i]}\n')
 
 datasets_k = {
-    'ca-AstroPh': 50,
-    'ca-CondMat': 100, 
-    'ca-GrQc': 2, 
-    'ca-HepPh': 25, 
-    'ca-HepTh': 20,
+    # 'ca-AstroPh': 50,
+    # 'ca-CondMat': 100, 
+    # 'ca-GrQc': 2, 
+    # 'ca-HepPh': 25, 
+    # 'ca-HepTh': 20,
     'Oregon-1': 5,
-    'roadNet-CA': 50,
-    'soc-Epinions1': 10,
-    'web-NotreDame': 20
 }
 
 for dataset_name, k in datasets_k.items():
