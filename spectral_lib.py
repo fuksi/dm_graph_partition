@@ -6,7 +6,7 @@ from scipy.sparse.linalg import eigsh
 # adj_mat = np.loadtxt('example.txt')
 
 def get_adj_matrix_A(edges):
-    ''' Convert an input graph of edges to adjajency matrix
+    ''' Convert an input graph of edges (undirected) to adjajency matrix
     
     Arguments:
         edges {list of tuple/list} -- Collection of [fromVertexId, toVertexId]
@@ -23,6 +23,7 @@ def get_adj_matrix_A(edges):
         fromIdx = vertices.index(fromId)
         toIdx = vertices.index(toId)
         matrix[fromIdx][toIdx] = 1
+        matrix[toIdx][fromIdx] = 1
 
     return matrix, vertices
 
